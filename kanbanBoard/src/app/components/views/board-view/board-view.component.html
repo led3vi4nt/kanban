@@ -1,0 +1,52 @@
+<div class="w-100 h-100 overflow-hidden">
+    <div class="row h-100 m-0"
+         (drop)="textDrop($event)"
+         (dragover)="$event.preventDefault()"
+         (dblclick)="switchUserStoryForm(true)"
+         (window:keydown.escape)="switchUserStoryForm(false)"
+    >
+        <div cdkDropList
+             *ngFor="let userStory of userStories, let i = index"
+             class="col-3 track {{trackStyles[i]}}"
+             [cdkDropListData]="userStories[i]"
+             [cdkDropListConnectedTo]="trackIds"
+             (cdkDropListDropped)="drop($event)"
+             [id]="trackIds[i]"
+        >
+            <h2 class="text-white text-center pb-1">{{titles[i]}}</h2>
+            <ng-container *ngFor="let userStory of userStories[i]">
+                <app-user-story
+                    class="flex-row align-items-center"
+                    [title]="userStory.title"
+                    [id]="userStory.id"
+                    (deleteMe)="deleteUserStory(userStory.id)"
+                    [description]="userStory.description"
+                    cdkDrag
+                ></app-user-story>
+                <div class="vertical-space"></div>
+            </ng-container>
+            <div class="d-flex justify-content-around">
+                <div class="add-user-story-button pointer"
+                     *ngIf="i<1 && !showStoryForm"
+                     (click)="switchUserStoryForm(true)"
+                ></div>
+            </div>
+            <app-user-story-form
+                *ngIf="i<1 && showStoryForm"
+                [nextStoryId]="nextStoryId"
+                (newUserStory)="loadUserStories()"
+                (close)="switchUserStoryForm(false)"
+            >
+            </app-user-story-form>
+        </div>
+
+    </div>
+</div>
+
+<div class="edit-sprint-button pointer"
+     (click)="navigateToSprintEditView()"
+></div>
+
+<div class="sprint-view-button pointer"
+     (click)="navigateBackToSprintView()"
+></div>

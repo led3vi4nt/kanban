@@ -1,0 +1,40 @@
+<div class="container bg-light user-story-container">
+    <form [formGroup]="form" (ngSubmit)="postUserStory($event)">
+        <input type="hidden" formControlName="sprintId">
+        <div class="row">
+            <div class="col user-story-title text-center p-0">
+                <input type="text"
+                       class="form-control bg-transparent text-center border-0 mt-0 mb-1"
+                       formControlName="title"
+                       #title
+                       placeholder="User Story {{nextStoryId}}"
+                >
+                <small class="text-muted close-x" (click)="closeUserStoryForm()">x</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col user-story-content text-justify p-0">
+            <textarea name="description"
+                      id="description"
+                      cols="30" rows="2"
+                      class="form-control bg-transparent border-0"
+                      [ngClass]="{'is-invalid':form.get('description').touched && form.get('description').invalid}"
+                      formControlName="description"
+                      #description
+                      placeholder="Describe user story here"
+                      (keypress)="onKeyPress($event)"
+            ></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-1">
+                <button type="submit"
+                        class="form-control btn btn-light"
+                        [disabled]="form.invalid"
+                >
+                    SAVE USER STORY
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

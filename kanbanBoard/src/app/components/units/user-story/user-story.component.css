@@ -1,0 +1,33 @@
+.user-story-container {
+    border-radius: .5rem;
+    border-right: solid 2px #666;
+    border-bottom: solid 2px #666;
+    min-height: 75px;
+    cursor: grab;
+    box-shadow:  0 .25rem .1rem rgba(0,0,0,.2) !important;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+    white-space: pre-line;
+    transition: transform .2s;
+}
+
+.grabbing {
+    cursor: grabbing;
+}
+
+.user-story-title {
+    background: lightgrey;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.user-story-content {
+    padding: .5rem .75rem 1rem;
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+}

@@ -1,0 +1,17 @@
+<div class="container bg-light user-story-container"
+     #container
+     (mousedown)="addGrabbingStyle()"
+     (mouseup)="removeGrabbingStyle()"
+>
+    <div class="row">
+        <div class="col user-story-title text-center pr-2">
+            {{title}}
+            <small class="float-right text-muted" (click)="emitDeleteRequest()">x</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col user-story-content">
+            {{description}}
+        </div>
+    </div>
+</div>

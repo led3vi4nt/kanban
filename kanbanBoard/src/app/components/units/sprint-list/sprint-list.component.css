@@ -1,0 +1,14 @@
+td {
+    vertical-align: middle;
+}
+
+.edit-button {
+    width: 1.6rem;
+    margin-left: 1rem;
+    padding: .2rem;
+    opacity: .5;
+}
+
+.edit-button:hover {
+    opacity: .8;
+}

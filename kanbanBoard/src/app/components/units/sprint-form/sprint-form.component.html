@@ -1,0 +1,111 @@
+<form [formGroup]="form">
+    <input type="hidden"
+           *ngIf="sprintToEdit"
+           formControlName="id"
+           name="id"
+           id="id">
+    <div class="form-group d-flex">
+        <label for="badge" class="col-2 text-right small">
+            Badge
+        </label>
+        <input type="text"
+               id="badge"
+               formControlName="badge"
+               placeholder="Sprint badge"
+               class="col-9 form-control"
+        />
+    </div>
+    <div class="form-group d-flex">
+        <label for="description" class="col-2 text-right small">
+            Description
+        </label>
+        <textarea type="text"
+                  style="resize: none"
+                  id="description"
+                  formControlName="description"
+                  placeholder="Brief description of Sprint, including goals, directives"
+                  class="col-9 form-control"
+        ></textarea>
+    </div>
+
+    <div *ngIf="sprintToEdit && sprintStateOptions.length > 0">
+        <div class="form-group d-flex">
+            <label for="sprintState" class="col-2 text-right small">
+                State
+            </label>
+            <select id="sprintState"
+                    class="col-9 form-control"
+                    formControlName="sprintState"
+            >
+                <option *ngFor="let stateOption of sprintStateOptions" [value]="stateOption">
+                    {{stateOption}}
+                </option>
+            </select>
+        </div>
+        <hr>
+        <h4 class="text-center">User Stories</h4>
+        <table id="list-table" class="table table-striped mb-0 pb-0 small" aria-describedby="title">
+            <thead class="thead-dark small text-center">
+                <tr>
+                    <th scope="col" class="border-right col-4">Title</th>
+                    <th scope="col" class="border-right" style="width: 140px">Description</th>
+                    <th scope="col" class="col-4" style="width: 40px">State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let story of sprintToEdit.userStories">
+                    <td class="pl-2">
+                        {{story.title}}
+                    </td>
+                    <td>
+                        {{story.description}}
+                    </td>
+                    <td class="text-center">
+                        {{story.state}}
+                        <small class="pointer close-x"
+                               (click)="deleteStory(story.id)"
+                        >X</small>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group"
+             *ngIf="!showStoryForm"
+        >
+            <button type="button"
+                    (click)="switchUserStoryForm(true)"
+                    class="form-control btn btn-light"
+            >
+                NEW USER STORY
+            </button>
+        </div>
+        <app-user-story-form
+            *ngIf="showStoryForm"
+            (newUserStory)="loadUserStories()"
+            (close)="switchUserStoryForm(false)"
+        >
+        </app-user-story-form>
+        <hr>
+    </div>
+    <div class="form-group d-flex justify-content-around">
+        <button (click)="hideForm()"
+                class="btn btn-light border-dark w-25 form-control"
+        >
+            {{cancelLabel}}
+        </button>
+
+        <button (click)="deleteSprint(sprintToEdit.id)"
+                class="btn btn-danger border-dark w-25 form-control"
+                *ngIf="sprintToEdit"
+        >
+            DELETE SPRINT
+        </button>
+
+        <button (click)="bookmarkSprint()"
+                class="btn btn-warning border-dark w-25 form-control"
+        >
+            SAVE SPRINT
+        </button>
+    </div>
+
+</form>

@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col p-1 shadow {{titleStyle}}">
+        <div class="h3 text-center" id="title">
+            {{title}}
+        </div>
+    </div>
+</div>
+<div class="row p-0">
+    <table id="list-table" class="table table-striped mb-0 pb-0" aria-describedby="title">
+        <thead class="thead-dark small text-center">
+            <tr>
+                <th scope="col" class="border-right col-5">Badge</th>
+                <th scope="col" class="border-right col-2" style="width: 140px">State</th>
+                <th scope="col" class="border-right col" style="width: 40px">US</th>
+                <th scope="col" class="col-4">Bookmarked</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pointer"
+                *ngFor="let sprint of sprintList"
+                routerLink="sprints/{{sprint.id}}">
+                <td class="pl-4">
+                    {{sprint.badge}}
+                </td>
+                <td class="small text-center">
+                    {{sprint.sprintState}}
+                </td>
+                <td class="small text-center">
+                    {{sprint.userStoryCount}}
+                </td>
+                <td class="small text-center">
+                    {{sprint.createdAt}}
+                    <img *ngIf="allowEdit"
+                         src="assets/images/pencil.png"
+                         alt="Edit"
+                         class="edit-button"
+                         (click)="editSprint(sprint.id, $event)"
+                    />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

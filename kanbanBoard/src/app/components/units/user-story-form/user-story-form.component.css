@@ -1,0 +1,44 @@
+.user-story-container {
+    border-radius: .5rem;
+    min-height: 75px;
+    box-shadow:  0 .25rem .1rem rgba(0,0,0,.2) !important;
+
+}
+
+.user-story-title {
+    background: lightgrey;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+
+.form-control {
+    font-size: 1.2rem;
+    outline: none;
+    box-shadow: none;
+    border-radius: .5rem;
+    resize: none;
+    color: #212529 !important;
+    line-height: 1.3rem;
+}
+
+.btn {
+    height: 2rem;
+}
+
+.form-control[type="text"] {
+    margin: .25rem;
+    padding: .25rem;
+    height: 1.75rem;
+}
+
+.form-control:active, .form-control:focus {
+    box-shadow: none;
+}
+
+.close-x {
+    cursor: pointer;
+    position: absolute;
+    top: .25rem;
+    right: .5rem;
+}

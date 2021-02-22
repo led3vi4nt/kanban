@@ -1,0 +1,35 @@
+<div class="scroll-content">
+    <div class="text-right w-50 m-auto">
+        <small class="text-muted pointer" (click)="loginService.logout()">logout</small>
+    </div>
+    <div class="container w-50 mt-4 mb-2 shadow">
+        <app-sprint-list
+            [allowEdit]="true"
+            [sprintList]="activeSprints"
+            [titleStyle]="'bg-warning'"
+            [title]="'Active Sprints'"
+        ></app-sprint-list>
+        <div class="row mt-2 border-top p-2">
+            <div class="col p-0" *ngIf="!showSprintForm">
+                <button class="btn btn-light border-dark form-control"
+                        (click)="showSprintForm=true">
+                    BOOKMARK NEW SPRINT
+                </button>
+            </div>
+            <div class="col p-0" *ngIf="showSprintForm">
+                <app-sprint-form
+                    (cancel)="showSprintForm = false"
+                    (bookmark)="loadSprints()"
+                ></app-sprint-form>
+            </div>
+        </div>
+    </div>
+    <div class="container w-50 mt-4 mb-4 shadow" *ngIf="sprintsDone.length>0">
+        <app-sprint-list
+            [allowEdit]="false"
+            [sprintList]="sprintsDone"
+            [titleStyle]="'bg-success text-white'"
+            [title]="'Sprints Done'"
+        ></app-sprint-list>
+    </div>
+</div>
